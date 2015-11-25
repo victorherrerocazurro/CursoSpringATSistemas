@@ -26,12 +26,6 @@
 		<property name="order" value="1" />
 	</bean>
 
-	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
-		<property name="location" value="/WEB-INF/views.xml" />
-		<property name="order" value="0"></property>
-	</bean>
-
-
 	<!-- Nomenclatura ANT para los Path -->
 	<mvc:resources location="/media/" mapping="/media/**" />
 

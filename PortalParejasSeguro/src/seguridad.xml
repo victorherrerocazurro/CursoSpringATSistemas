@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http pattern="/media/**" security="none" />
+
+	<beans:bean id="miFiltro" class="com.portalparejas.filtros.RemerberLoginFilter"/>
+
+	<http auto-config="true" use-expressions="true" path-type="ant" >
+		
+		<!-- Filtros a mayores de la configuracion por defecto -->
+		<custom-filter ref="miFiltro" before="FORM_LOGIN_FILTER"/>
+		
+		<!-- Da acceso a todos los recursos protegidos, con el ROL RELE_USER -->
+		<intercept-url pattern="/**" access="isAuthenticated()" requires-channel="https"/>
+		<!-- Permite configurar un ofrmulario personalizado -->
+		<form-login login-page="/pages/login.jsp"
+			authentication-failure-url="/pages/error.html" />
+		<!-- Activa la URL de Logout y configura el precemineto a realiza en el 
+			logout -->
+		<logout delete-cookies="JSESSIONID" invalidate-session="true"
+			logout-success-url="/pages/login.jsp" />
+		<remember-me key="miApp-rememberMe"
+			token-validity-seconds="86400" />
+		<!-- Pagina a mostrar cuando se accede a un recurso para el que no se tienen 
+			permisos -->
+		<access-denied-handler error-page="/pages/access-denied.jsp" />
+		
+		<!-- Activacion de SSL, no olvidar tambien requires-chanel en intercept-url -->
+		<port-mappings>
+			<port-mapping http="8080" https="8443"/>
+		</port-mappings>
+		
+		<!-- Gestion de las Sessiones -->
+		<session-management invalid-session-url="/pages/session-expired.jsp">
+			<concurrency-control max-sessions="1"
+							error-if-maximum-exceeded="true"/>
+		</session-management>
+
+	</http>
+	
+	<!-- Activar la seguridad en el negocio -->
+	<global-method-security pre-post-annotations="enabled"/>
+
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="md5">
+				<salt-source user-property="username" />
+			</password-encoder>
+			<user-service>
+				<user name="victor" password="c5bf4ca3340ba212f88a9884c6f90f22" authorities="ROLE_USER,ROLE_ADMIN" /><!-- victor -->
+				<user name="pepe" password="ff6f9778f83694ce5c56cc2c73df6649" authorities="ROLE_USER" /><!-- pepe -->
+				<user name="juan" password="29312f60782a08f18ea924452aaa9bd4" authorities="ROLE_USER" /><!-- juan -->
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+
+</beans:beans>

@@ -21,7 +21,7 @@ import com.aplicacion.parejas.modelo.entidades.Persona;
 import com.portalparejas.validadores.PersonaNombreValidador;
 
 @Controller
-@RequestMapping(path="/altaPersona")
+@RequestMapping("/altaPersona")
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class GestionPersonaController {
 
