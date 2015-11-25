@@ -10,6 +10,7 @@ public class Persona {
 	private String nombre;
 	@NotEmpty
 	private String apellido;
+	
 	@Range(min = 18)
 	private Integer edad;
 	private String sexo;
@@ -78,4 +79,11 @@ public class Persona {
 	public void setAltura(Double altura) {
 		this.altura = altura;
 	}
+	
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", sexo="
+				+ sexo + ", altura=" + altura + "]";
+	}
+
 }
