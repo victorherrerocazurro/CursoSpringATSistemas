@@ -22,8 +22,8 @@
 		<custom-filter ref="rememberLoginFilter" before="FORM_LOGIN_FILTER" />
 
 		<!-- Asegurar todo e indicar que se emplee https -->
-		<intercept-url pattern="/**" access="isAuthenticated()"
-			requires-channel="https" />
+		<intercept-url pattern="/**" access="isAuthenticated()"/>
+			<!-- requires-channel="https" />-->
 		<!-- Indicar un formulario de Login particular -->
 		<form-login login-page="/pages/custom-login.jsp"
 			authentication-failure-url="/pages/custom-login.jsp?login_error" />
@@ -39,11 +39,12 @@
 			<port-mapping http="8080" https="8443" />
 		</port-mappings>
 		<!-- Control sobre el comportamiento de las sesiones, requiere de un FiltroWeb -->
+		<!-- 
 		<session-management invalid-session-url="/pages/session-expired.jsp">
 			<concurrency-control max-sessions="1"
 				error-if-maximum-exceeded="true" />
 		</session-management>
-
+		-->
 	</http>
 
 	<!-- Activa la lectura de anotaciones @Secured -->
@@ -74,11 +75,12 @@
 	</authentication-manager>
 
 	<!-- Bean que inicializa en esquema de BD para la seguridad -->
-	<!-- beans:bean id="dbUtil" class="xfiles.util.DbUtil"
+	<!-- 
+	<beans:bean id="dbUtil" class="xfiles.util.DbUtil"
 		init-method="initialize">
 		<beans:property name="dataSource" ref="dataSource" />
-	</beans:bean-->
-
+	</beans:bean>
+	-->
 	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
