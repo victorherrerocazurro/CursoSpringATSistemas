@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/batchErrors
+END
+SampleSkipException.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/batchErrors/SampleSkipException.java
+END
+SampleSkipPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/batchErrors/SampleSkipPolicy.java
+END
+SampleJobIncrementer.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/batchErrors/SampleJobIncrementer.java
+END

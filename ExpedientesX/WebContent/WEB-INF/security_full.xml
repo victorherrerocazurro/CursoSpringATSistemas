@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http pattern="/pages/*" security="none"/>
+	<http pattern="/images/*" security="none"/>
+	<http pattern="/css/*" security="none"/>
+	
+	<beans:bean id="rememberLoginFilter" class="xfiles.util.RemerberLoginFilter"/>
+	<beans:bean id="backButtonFilter" class="xfiles.util.BackButtonFilter"/>
+	
+	<http use-expressions="true" access-decision-manager-ref="accessDecisionManager">
+		
+		<custom-filter ref="rememberLoginFilter" before="FORM_LOGIN_FILTER"/>
+		<custom-filter ref="backButtonFilter" after="LAST"/>
+		
+		<intercept-url pattern="/**" access="isAuthenticated()" requires-channel="https"/>
+		<form-login login-page="/pages/custom-login.jsp" 
+			authentication-failure-url="/pages/custom-login.jsp?login_error" />
+		<logout logout-success-url="/pages/disconnected.jsp" delete-cookies="JSESSIONID" />
+		<session-management invalid-session-url="/pages/session-expired.jsp">
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+		</session-management>
+		<remember-me key="xfiles" token-validity-seconds="86400" />
+		
+		<access-denied-handler  error-page="/pages/access-denied.jsp"/>
+	
+		<port-mappings>
+			<port-mapping http="8080" https="8443"/>
+		</port-mappings>
+		
+	</http>
+	
+	<global-method-security pre-post-annotations="enabled" />
+	
+	<authentication-manager>
+		<authentication-provider>
+			<!-- <password-encoder hash="md5">
+				<salt-source user-property="username" />
+			</password-encoder>-->
+			<user-service>
+				<user name="Fernando" password="1234" authorities="ROLE_AGENT" />
+				<user name="Mulder" password="fox"  authorities="ROLE_SPECIAL_AGENT" />
+				<user name="Scully" password="dana" authorities="ROLE_SPECIAL_AGENT" />
+				<user name="Skinner" password="walter" authorities="ROLE_ASSISTANT_DIRECTOR" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>	
+
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.UnanimousBased">
+			<beans:constructor-arg>
+				<beans:list>
+					<beans:bean class="org.springframework.security.access.vote.RoleVoter">
+						<beans:property name="rolePrefix" value="ROLE_" />
+					</beans:bean>
+					<beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+					<beans:bean class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+					<beans:bean class="xfiles.util.DateVoter"/>
+				</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
+		
+</beans:beans>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/batch 
+		http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<batch:job 	id="tutorial7.xmlsignature.sampleJob"  
+				restartable="false" 
+				incrementer="executionflow.jobIncrementer">
+		<batch:step id="validation" next="processing">
+			<batch:tasklet ref="xmlsignature.validationTasket"/>
+		</batch:step>
+		<batch:step id="processing" next="xml-signature">
+			<batch:tasklet>
+				<batch:chunk reader="xmlsignature.sampleStaxReader" 
+							 processor="xmlsignature.sampleProcessor" 
+							 writer="xmlsignature.sampleStaxWriter" 
+							 commit-interval="50" 
+							 skip-policy="xmlsignature.sampleSkipPolicy"/>
+				<batch:listeners>
+					<batch:listener ref="xmlsignature.skipListener"/>
+					<batch:listener ref="xmlsignature.stepListener"/>
+				</batch:listeners>
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="xml-signature">
+			<batch:tasklet ref="xmlsignature.xmlSignatureTasket"/>
+		</batch:step>
+	</batch:job>
+
+ 	<bean id="xmlsignature.sampleStaxReader" 
+ 	      class="org.springframework.batch.item.xml.StaxEventItemReader">
+	    <property name="fragmentRootElementName" value="item" />
+	    <property name="resource" value="classpath:/xml/items-signature.xml" />
+	    <property name="unmarshaller" ref="jaxb.reader" />
+	</bean>
+    <bean id="jaxb.reader" 
+    	  class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+            <value>com.alaincieslik.springbatch.article.xmlsignature.model.Item</value>
+            </list>
+        </property>
+        <property name="schema" value="classpath:/xml/items.xsd"/>
+    </bean>
+	
+	<bean id="xmlsignature.sampleStaxWriter" 
+		  class="org.springframework.batch.item.xml.StaxEventItemWriter">
+		<property name="resource" ref="outputResource" />
+		<property name="marshaller" ref="jaxb.writer" />
+		<property name="rootTagName" value="items" />
+		<property name="overwriteOutput" value="true" />
+	</bean>	
+	<bean id="outputResource" class="org.springframework.core.io.FileSystemResource">
+		<constructor-arg value="c:/temp/xml/output-sample7.xml" />
+	</bean>
+    <bean id="jaxb.writer" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+            <value>com.alaincieslik.springbatch.article.xmlsignature.model.Sample</value>
+            </list>
+        </property>
+        <property name="schema" value="classpath:/xml/samples.xsd"/>
+    </bean>
+    
+	<bean id="xmlsignature.skipListener" 
+		  class="com.alaincieslik.springbatch.article.xmlsignature.batch.SampleSkipListener" 
+		  scope="step">
+		<property name="skipItemsDao" ref="xmlstreaming.skipItemsDao"/>
+		<property name="jobExecutionId" value="#{stepExecutionContext['jobExecutionId']}" />
+		<property name="stepExecutionId" value="#{stepExecutionContext['stepExecutionId']}" />
+		<property name="jobName" value="#{stepExecutionContext['jobName']}" />
+	</bean>
+ 
+</beans>
+  

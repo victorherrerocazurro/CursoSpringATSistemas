@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/auditing/dao
+END
+SampleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/auditing/dao/SampleDao.java
+END
+SampleDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/auditing/dao/SampleDaoImpl.java
+END
+SkipItemsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/auditing/dao/SkipItemsDao.java
+END
+BaseDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/auditing/dao/BaseDao.java
+END
+SkipItemsDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/auditing/dao/SkipItemsDaoImpl.java
+END

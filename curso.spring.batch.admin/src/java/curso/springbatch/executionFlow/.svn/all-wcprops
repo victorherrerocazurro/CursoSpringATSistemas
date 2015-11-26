@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow
+END
+BaseElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/BaseElement.java
+END
+SkippedItemReportStep.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/SkippedItemReportStep.java
+END
+SampleStepExecutionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/SampleStepExecutionListener.java
+END
+SampleSkipException.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/SampleSkipException.java
+END
+SampleSkipPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/SampleSkipPolicy.java
+END
+SampleJobIncrementer.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/SampleJobIncrementer.java
+END
+SampleSkipListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/9/trunk/src/java/com/alaincieslik/springbatch/article/executionFlow/SampleSkipListener.java
+END

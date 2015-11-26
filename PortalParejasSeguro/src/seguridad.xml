@@ -42,7 +42,7 @@
 	</http>
 	
 	<!-- Activar la seguridad en el negocio -->
-	<global-method-security pre-post-annotations="enabled"/>
+	<global-method-security pre-post-annotations="enabled" />
 
 	<authentication-manager>
 		<authentication-provider>

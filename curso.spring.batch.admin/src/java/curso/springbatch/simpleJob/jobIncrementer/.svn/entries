@@ -1,0 +1,77 @@
+10
+
+dir
+31
+http://springbatch-tutorial.googlecode.com/svn/trunk/src/java/com/alaincieslik/springbatch/article/jobIncrementer
+http://springbatch-tutorial.googlecode.com/svn
+
+
+
+2012-09-16T18:58:16.781116Z
+9
+alain.cieslik@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+eb5a401b-e5f1-db0f-fa16-9fb2b48adc2e
+
+processor
+dir
+
+model
+dir
+
+reader
+dir
+
+dao
+dir
+
+SampleJobIncrementer.java
+file
+
+
+
+
+2014-03-13T12:21:28.630982Z
+d2e6f5ce01a6ad895f1d9d0742acf693
+2012-09-16T18:58:16.781116Z
+9
+alain.cieslik@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1051
+
+writer
+dir
+

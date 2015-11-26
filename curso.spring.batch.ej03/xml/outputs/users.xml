@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+	<user>
+		<id>1</id>
+		<username>fer</username>
+		<password>1234</password>
+		<age>40</age>
+	</user>
+	<user>
+		<id>2</id>
+		<username>rosa</username>
+		<password>rosa</password>
+		<age>30</age>
+	</user>
+	<user>
+		<id>3</id>
+		<username>luis</username>
+		<password>miguel</password>
+		<age>30</age>
+	</user>
+	<user>
+		<id>4</id>
+		<username>ana</username>
+		<password>1234</password>
+		<age>50</age>
+	</user>
+</users>

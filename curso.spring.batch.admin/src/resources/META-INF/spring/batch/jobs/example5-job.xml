@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+
+	<batch:job id="example5.executionflow.sampleJob"  restartable="false" incrementer="jobIncrementer.jobIncrementer">
+		<batch:step id="step">
+			<batch:tasklet>
+				<batch:chunk reader="simpleJob.sampleReader" processor="executionflow.sampleProcessor" writer="simpleJob.sampleWriter" commit-interval="50" skip-policy="executionflow.skipPolicy"/>
+				<batch:listeners>
+					<batch:listener ref="executionflow.skipListener"></batch:listener>
+					<batch:listener ref="executionflow.stepListener"></batch:listener>
+				</batch:listeners>
+			</batch:tasklet>
+			<batch:next on="COMPLETED WITH SKIPS" to="generateReport"/>
+			<batch:end on="COMPLETED" />
+		</batch:step>
+		<batch:step id="generateReport" >
+			<batch:tasklet ref="executionflow.skippedItemReportStep" />
+		</batch:step> 		
+	</batch:job>
+
+	<bean id="executionflow.skipListener" class="curso.springbatch.executionFlow.SampleSkipListener" scope="step">
+		<property name="skipItemsDao" ref="auditing.skipItemsDao"/>
+		<property name="jobExecutionId" value="#{stepExecutionContext['jobExecutionId']}" />
+		<property name="stepExecutionId" value="#{stepExecutionContext['stepExecutionId']}" />
+		<property name="jobName" value="#{stepExecutionContext['jobName']}" />
+	</bean>
+
+	
+ 
+</beans>

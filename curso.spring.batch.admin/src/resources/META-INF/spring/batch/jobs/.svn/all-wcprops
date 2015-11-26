@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/31/trunk/src/resources/META-INF/spring/batch/jobs
+END
+article5-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/9/trunk/src/resources/META-INF/spring/batch/jobs/article5-job.xml
+END
+article6-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/26/trunk/src/resources/META-INF/spring/batch/jobs/article6-job.xml
+END
+article7-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/31/trunk/src/resources/META-INF/spring/batch/jobs/article7-job.xml
+END
+article1-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/9/trunk/src/resources/META-INF/spring/batch/jobs/article1-job.xml
+END
+article2-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/9/trunk/src/resources/META-INF/spring/batch/jobs/article2-job.xml
+END
+article3-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/9/trunk/src/resources/META-INF/spring/batch/jobs/article3-job.xml
+END
+article4-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/9/trunk/src/resources/META-INF/spring/batch/jobs/article4-job.xml
+END

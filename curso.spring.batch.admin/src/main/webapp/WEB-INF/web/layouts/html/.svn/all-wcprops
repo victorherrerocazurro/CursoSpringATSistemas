@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/17/trunk/src/main/webapp/WEB-INF/web/layouts/html
+END
+home.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/17/trunk/src/main/webapp/WEB-INF/web/layouts/html/home.ftl
+END
+header.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/17/trunk/src/main/webapp/WEB-INF/web/layouts/html/header.ftl
+END

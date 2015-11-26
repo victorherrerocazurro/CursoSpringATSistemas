@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+	<bean id="transactionManager"
+		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+
+
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+
+
+	<batch:job id="trabajoBatch">
+		<batch:step id="primerPaso" next="segundoPaso">
+			<batch:tasklet ref="imprimirHola"></batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="segundoPaso" next="tercerPaso">
+			<batch:tasklet ref="imprimirMundo"></batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="tercerPaso">
+			<batch:tasklet ref="imprimirExclamacion"></batch:tasklet>
+		</batch:step>
+	</batch:job>
+
+
+
+
+	<bean id="imprimirHola" class="curso.spring.batch.ej01.ImprimirTasklet">
+		<property name="mensaje" value="Hola, " />
+	</bean>
+
+	<bean id="imprimirMundo" class="curso.spring.batch.ej01.ImprimirTasklet">
+		<property name="mensaje" value="Mundo" />
+	</bean>
+
+	<bean id="imprimirExclamacion" class="curso.spring.batch.ej01.ImprimirTasklet">
+		<property name="mensaje" value="!!!" />
+	</bean>
+	</beans>
